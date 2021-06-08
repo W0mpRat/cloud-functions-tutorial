@@ -19,7 +19,6 @@ exports.randomNumber = functions.https.onRequest((req, res) => {
   res.send(number.toString());
 });
 
-
 // http request 2
 exports.toTheDojo = functions.https.onRequest((req, res) => {
   res.redirect("https://www.thenetninja.co.uk");
