@@ -23,3 +23,8 @@ exports.randomNumber = functions.https.onRequest((req, res) => {
 exports.toTheDojo = functions.https.onRequest((req, res) => {
   res.redirect("https://www.thenetninja.co.uk");
 });
+
+// http callable function 1
+exports.sayHello = functions.https.onCall((data, context) => {
+  return `Hello, my dood ${data.name}`;
+});
