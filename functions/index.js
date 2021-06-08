@@ -27,6 +27,26 @@ exports.userDeleted = functions.auth.user().onDelete((user, context) => {
   return admin.firestore().collection("users").doc(user.uid).delete();
 });
 
+// http callable function (adding a request)
+exports.addRequest = functions.https.onCall((data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+        "unauthenticated",
+        "You ain't logged in boi, can't add no request."
+    );
+  }
+  if (data.requestString.length > 30) {
+    throw new functions.https.HttpsError(
+        "invalid-argument",
+        "Too long!"
+    );
+  }
+  return admin.firestore().collection("requests").add({
+    text: data.requestString,
+    upvotes: 0,
+  });
+});
+
 // http request 1
 exports.randomNumber = functions.https.onRequest((req, res) => {
   const number = Math.round(Math.random() * 100);
