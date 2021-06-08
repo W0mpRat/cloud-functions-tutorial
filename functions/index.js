@@ -8,6 +8,16 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
+// Auth Trigger (new user signup)
+exports.newUserSignup = functions.auth.user().onCreate((user, context) => {
+  console.log(`user created ${user.email} ${user.uid}`);
+});
+
+// Auth Trigger (user deleted)
+exports.userDeleted = functions.auth.user().onDelete((user, context) => {
+  console.log(`user deleted ${user.email} ${user.uid}`);
+});
+
 // http request 1
 exports.randomNumber = functions.https.onRequest((req, res) => {
   const number = Math.round(Math.random() * 100);
