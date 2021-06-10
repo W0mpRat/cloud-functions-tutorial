@@ -39,7 +39,8 @@ const HelloVueApp = {
       try {
         const result = await upvoteFn({ id })
       } catch (error) {
-        console.error(error.message)
+        // console.error(error.message)
+        showNotification(error.message)
       }
     }
   }
