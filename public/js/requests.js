@@ -21,7 +21,7 @@ const HelloVueApp = {
     }
   },
   mounted () {
-    const ref = firebase.firestore().collection('requests');
+    const ref = firebase.firestore().collection('requests').orderBy('upvotes', 'desc');
 
     ref.onSnapshot(snapshot => {
       let requests = [];
@@ -31,6 +31,17 @@ const HelloVueApp = {
 
       this.requests = requests;  
     });
+  },
+  methods: {
+    async submitUpvote (id) {
+      const upvoteFn = firebase.functions().httpsCallable('upvote')
+
+      try {
+        const result = await upvoteFn({ id })
+      } catch (error) {
+        console.error(error.message)
+      }
+    }
   }
 }
 
