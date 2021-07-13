@@ -1,0 +1,44 @@
+{
+  "kind": "identitytoolkit#DownloadAccountResponse",
+  "users": [
+    {
+      "localId": "TIrZPxY2AGWbqPDCWgfG7PlRZOh1",
+      "createdAt": "1623861019782",
+      "passwordHash": "fakeHash:salt=fakeSalt4s8bN1brbf1s44O1VI7P:password=Password123!",
+      "salt": "fakeSalt4s8bN1brbf1s44O1VI7P",
+      "passwordUpdatedAt": 1626190086320,
+      "providerUserInfo": [
+        {
+          "providerId": "password",
+          "email": "anderson.chasew@gmail.com",
+          "federatedId": "anderson.chasew@gmail.com",
+          "rawId": "anderson.chasew@gmail.com"
+        }
+      ],
+      "validSince": "1626190086",
+      "email": "anderson.chasew@gmail.com",
+      "emailVerified": false,
+      "disabled": false
+    },
+    {
+      "localId": "nyivXAYPUGKhktTFAjqa2Qty4O6v",
+      "createdAt": "1626190151789",
+      "lastLoginAt": "1626190151789",
+      "emailVerified": false,
+      "email": "biff@gmail.com",
+      "salt": "fakeSalt4s8bN1brbf1s44O1VI7P",
+      "passwordHash": "fakeHash:salt=fakeSalt4s8bN1brbf1s44O1VI7P:password=Password123!",
+      "passwordUpdatedAt": 1626190151789,
+      "validSince": "1626190151",
+      "providerUserInfo": [
+        {
+          "providerId": "password",
+          "email": "biff@gmail.com",
+          "federatedId": "biff@gmail.com",
+          "rawId": "biff@gmail.com"
+        }
+      ],
+      "lastRefreshAt": "2021-07-13T15:29:11.790Z"
+    }
+  ]
+}

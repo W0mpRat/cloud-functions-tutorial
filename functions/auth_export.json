@@ -1,0 +1,11 @@
+{"users": [
+{
+  "localId": "TIrZPxY2AGWbqPDCWgfG7PlRZOh1",
+  "email": "anderson.chasew@gmail.com",
+  "emailVerified": false,
+  "passwordHash": "tgPLy4bC1zjlPXKEEjjfluZHMIiDEIs9aQBVymOZlgYlxQgdWo630mXTpJ3WukyUCrEfSIOQEtYfuxjjVsxMJg==",
+  "salt": "DlxbjdDCswyl3Q==",
+  "lastSignedInAt": "1623861019782",
+  "createdAt": "1623861019782",
+  "providerUserInfo": []
+}]}
