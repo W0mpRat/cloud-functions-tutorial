@@ -9,7 +9,11 @@ function init() {
 init()
 
 // open request modal
-requestLink.addEventListener('click', () => {
+requestLink.addEventListener('click',async () => {
+  // get function reference
+  const sayHello = firebase.functions().httpsCallable('sayHello');
+  
+  const result = await sayHello({ name: 'Chase' })
   requestModal.classList.add('open');
 });
 
@@ -40,7 +44,6 @@ requestForm.addEventListener('submit', (e) => {
 
 // say hello function call
 const button = document.querySelector('.call');
-button.addEventListener('click', helloButtonClick)
 
 async function helloButtonClick () {
   // get function reference
@@ -50,6 +53,8 @@ async function helloButtonClick () {
 
   console.log(result.data)
 }
+
+button.addEventListener('click', helloButtonClick)
 
 // notification
 const notification = document.querySelector('.notification');
