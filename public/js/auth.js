@@ -3,7 +3,6 @@ const authModals = document.querySelectorAll('.auth .modal');
 const authWrapper = document.querySelector('.auth');
 const registerForm = document.querySelector('.register');
 const loginForm = document.querySelector('.login');
-// const googleLoginForm = document.querySelector('.google-login');
 const signOut = document.querySelector('.sign-out');
 let provider;
 let auth_pattern = 'email';
@@ -11,7 +10,7 @@ let auth_pattern = 'email';
 function init() {
   const auth = firebase.auth();
   // auth.useEmulator("http://localhost:9099");
-  provider = new firebase.auth.GoogleAuthProvider();
+  // provider = new firebase.auth.GoogleAuthProvider();
 }
 
 init()
@@ -81,6 +80,24 @@ loginForm.addEventListener('submit', async (e) => {
         });
       break;
   
+    case 'microsoft':
+      firebase.auth().signInWithPopup(provider)
+      .then((result) => {
+        // IdP data available in result.additionalUserInfo.profile.
+        // ...
+    
+        /** @type {firebase.auth.OAuthCredential} */
+        var credential = result.credential;
+    
+        // OAuth access and id tokens can also be retrieved:
+        var accessToken = credential.accessToken;
+        var idToken = credential.idToken;
+      })
+      .catch((error) => {
+        console.error(error)
+      });      
+
+      break;
     default:
       break;
   }
@@ -95,6 +112,12 @@ function loginWithEmail () {
 // login w/ Google form
 function loginWithGoogle () {
   this.auth_pattern = 'google';
+  provider = new firebase.auth.GoogleAuthProvider();
+}
+
+function loginWithMicrosoft () {
+  this.auth_pattern = 'microsoft';
+  provider = new firebase.auth.OAuthProvider('microsoft.com');
 }
 
 // sign out
