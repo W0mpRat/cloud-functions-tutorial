@@ -22,6 +22,7 @@
           <button onclick="loginWithEmail()">Login w/ Email</button>
           <button onclick="loginWithGoogle()">Login w/ Google</button>
           <button onclick="loginWithMicrosoft()">Login w/ Microsoft</button>
+          <button style="color:red;" onclick="skipAuth()">Skip Login</button>
           <p class="error"></p>
         </form>
         <div>No account? <a class="switch">Register instead</a></div>
@@ -76,6 +77,7 @@
       <nav>
         <a class="add-request">add request</a>
         <a class="sign-out">sign out</a>
+        <a class="change-user-password">change user password</a>
       </nav>
     </header>
 
@@ -90,7 +92,7 @@
           </div>
         </li>
       </ul>
-      <button class="call">Say Hello</button>
+      <button v-on:click="sayHello()" class="say-hello-button">Say Hello</button>
     </section>
 
     <!-- Vue 2 JS -->

@@ -10,6 +10,11 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
+// Say Hello
+exports.sayHello = functions.https.onCall((data, context) => {
+  console.log('Say Hello Called.');
+});
+
 // Auth Trigger (new user signup)
 exports.newUserSignup = functions.auth.user().onCreate((user, context) => {
   console.log(`user created ${user.email} ${user.uid}`);
@@ -46,6 +51,43 @@ exports.addRequest = functions.https.onCall((data, context) => {
     upvotes: 0,
   });
 });
+
+// http callable Change User Password
+exports.changeUserPassword = functions.https.onCall((data, context) => {
+
+  userIds = [
+    '0IPOkddzE5W7SXzbJHIPyWX0EW03',
+    '6P4l6YS4ETVubtNkRuvfi0M12qD2',
+    '9GXCub0Wy1OxZirzTpIHpNbFQM52',
+    'DpVDLz6WnxNte7WdHqM1SB3AlpX2',
+    'TkPm5hvzS0UBxHjSxP2tbhFe45i2',
+    'avDigLS77ZQdVVffH1xrRF4bcm53',
+    'r2Kdf22Usdaa4E0z9Wsv5FgItSG3',
+    'AFzhTOLNHdOg673JsZIv0yfSW0I3',
+    'KGyT2RevqLVABQB5knA955bDE6t2',
+    'SOxNOAucFtdeXs1d0oy0zrfW8Er1',
+    'ntcXhN01sdMQVz4z77SEijNb9d82'
+  ]
+
+  // old pw: Abcd1234!
+  const newPassword = '' // Set password here
+
+  for (const uid of userIds) {
+    // admin.auth().getUser(uid).then((user) => {
+    //   console.log(user)
+    // })
+    admin.auth().updateUser(uid, {
+      password: newPassword
+    }).then((userRecord) => {
+      console.log('Successfully updated user', userRecord.toJSON().email);
+      admin.auth().revokeRefreshTokens(uid).then(() => {
+        console.log('Successfully Revoked Refresh Token');
+      })
+    }).catch((error) => {
+      console.error(error);
+    }); 
+  }
+})
 
 // http request 1
 exports.randomNumber = functions.https.onRequest((req, res) => {

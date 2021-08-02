@@ -1,6 +1,8 @@
 const requestModal = document.querySelector('.new-request');
 const requestLink = document.querySelector('.add-request');
+const changePasswordLink = document.querySelector('.change-user-password');
 const requestForm = document.querySelector('.new-request form');
+// const sayHelloButton = document.querySelector('say-hello-button');
 
 function init() {
   firebase.functions().useEmulator('localhost', 5001)
@@ -8,12 +10,24 @@ function init() {
 
 init()
 
+// change user password
+changePasswordLink.addEventListener('click', async () => {
+  const changeUserPassword = firebase.functions().httpsCallable('changeUserPassword');
+  changeUserPassword()
+  .then(() => {
+    console.log('password changed')
+  })
+  .catch(error => {
+    requestForm.querySelector('.error').textContent = error.message;
+  });
+});
+
 // open request modal
-requestLink.addEventListener('click',async () => {
+requestLink.addEventListener('click', async () => {
   // get function reference
-  const sayHello = firebase.functions().httpsCallable('sayHello');
+  // const sayHello = firebase.functions().httpsCallable('sayHello');
   
-  const result = await sayHello({ name: 'Chase' })
+  // const result = await sayHello({ name: 'Chase' })
   requestModal.classList.add('open');
 });
 
@@ -43,18 +57,18 @@ requestForm.addEventListener('submit', (e) => {
 });
 
 // say hello function call
-const button = document.querySelector('.call');
+// const button = document.querySelector('.call');
 
-async function helloButtonClick () {
-  // get function reference
-  const sayHello = firebase.functions().httpsCallable('sayHello');
+// async function helloButtonClick () {
+//   // get function reference
+//   const sayHello = firebase.functions().onCall('sayHello');
   
-  const result = await sayHello({ name: 'Chase' })
+//   const result = await sayHello({ name: 'Chase' })
 
-  console.log(result.data)
-}
+//   console.log(result.data)
+// }
 
-button.addEventListener('click', helloButtonClick)
+// sayHelloButton.addEventListener('click', helloButtonClick)
 
 // notification
 const notification = document.querySelector('.notification');

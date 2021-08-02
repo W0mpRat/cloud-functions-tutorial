@@ -98,6 +98,11 @@ loginForm.addEventListener('submit', async (e) => {
       });      
 
       break;
+    
+    case 'skip_auth':
+      authWrapper.classList.remove('open');
+      authModals.forEach(modal => modal.classList.remove('active'));
+      break;
     default:
       break;
   }
@@ -120,10 +125,18 @@ function loginWithMicrosoft () {
   provider = new firebase.auth.OAuthProvider('microsoft.com');
 }
 
+function skipAuth () {
+  this.auth_pattern = 'skip_auth';
+}
+
 // sign out
 signOut.addEventListener('click', () => {
   firebase.auth().signOut()
-    .then(() => console.log('signed out'));
+    .then(() => {
+      authWrapper.classList.add('open');
+      authModals[0].classList.add('active');
+      console.log('signed out');
+    });
 });
 
 // auth listener

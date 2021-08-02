@@ -42,6 +42,17 @@ const HelloVueApp = {
         // console.error(error.message)
         showNotification(error.message)
       }
+    },
+
+    async sayHello () {
+      const sayHello = firebase.functions().httpsCallable('sayHello');
+
+      try {
+        const result = await sayHello();
+        console.log(result);
+      } catch (error) {
+        showNotification(error.message)
+      }
     }
   }
 }
